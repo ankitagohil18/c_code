@@ -3,21 +3,13 @@ int main()
 
 {
     int anks[11]={3,2,1,4,5,6,7,8,9,10,11};
-    int max=anks[0];
+    
     int n=sizeof(anks)/sizeof(anks[0]);
     int i;
     for(i=1;i<n;i++)
         { 
-
-          if(anks[0]<anks[i])
-
-          	
+          if(anks[0]<anks[i])  	
           	anks[0]=anks[i];
-          	
-
-		       
-aa
-		  
         }
         printf("maximum : %d",anks[0]);
         
