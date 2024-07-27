@@ -2,6 +2,9 @@
 void initialize(int row, int col, int x[row][col]);
 void display(int row, int col, int x[row][col]);
 void setData(int row, int col, int x[row][col], int r, int c, int data);
+int row_check(int row, int col, int x[row][col], int r);
+int col_check(int row, int col, int x[row][col], int c);
+int box_check(int row, int col, int x[row][col], int r, int c);
 void main()
 {
     int a[4][4];
