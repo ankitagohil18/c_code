@@ -16,13 +16,6 @@ int Row_check(struct sudoku *p, int r);
 int Col_check(struct sudoku *p, int c);
 int Box_check(struct sudoku *p, int r, int c);
 
-void initialize(int row, int col, int x[row][col]);
-void display(int row, int col, int x[row][col]);
-void setData(int row, int col, int x[row][col], int r, int c, int data);
-int row_check(int row, int col, int x[row][col], int r);
-int col_check(int row, int col, int x[row][col], int c);
-int box_check(int row, int col, int x[row][col], int r, int c);
-
 int main()
 {
     struct sudoku s;
@@ -38,18 +31,6 @@ int main()
     printf("function nu output: %d\n", Box_check(&s, 2, 0));
     printf("function nu output: %d\n", Box_check(&s, 1, 2));
     printf("function nu output: %d\n", Box_check(&s, 3, 3));
-    // int a[4][4];
-    // initialize(4, 4, a);
-    // setData(4, 4, a, 0, 0, 2);
-    // setData(4, 4, a, 1, 1, 1);
-    // setData(4, 4, a, 1, 3, 2);
-    // setData(4, 4, a, 2, 2, 3);
-    // setData(4, 4, a, 3, 3, 4);
-    // display(4, 4, a);
-    // printf("function nu output: %d\n", row_check(4, 4, a, 0));
-    // printf("function nu output: %d\n", row_check(4, 4, a, 1));
-    // printf("function nu output: %d\n", row_check(4, 4, a, 2));
-    // printf("function nu output: %d\n", row_check(4, 4, a, 3));
     return 0;
 }
 
@@ -135,55 +116,6 @@ int Box_check(struct sudoku *p, int r, int c)
     }
     /* Do code change here */
     for (i = 1; i <= (*p).size; i++)
-    {
-        if (count[i] >= 2)
-        {
-            return 0;
-        }
-    }
-    return 1;
-}
-
-
-void initialize(int row, int col, int x[row][col])
-{
-    int i, j;
-    for (i = 0; i < row; i++)
-    {
-        for (j = 0; j < col; j++)
-        {
-            x[i][j] = 0;
-        }
-    }
-}
-void display(int row, int col, int x[row][col])
-{
-    int i, j;
-    for (i = 0; i < row; i++)
-    {
-        for (j = 0; j < col; j++)
-        {
-            printf("%d ", x[i][j]);
-        }
-        printf("\n");
-    }    
-}
-void setData(int row, int col, int x[row][col], int r, int c, int data)
-{
-    x[r][c] = data;
-}
-int row_check(int row, int col, int x[row][col], int r)
-{
-    int count[row + 1], i;
-    for (i = 0; i < row + 1; i++)
-    {
-        count[i] = 0;
-    }
-    for (i = 0; i < row; i++)
-    {
-        count[x[r][i]]++;
-    }
-    for (i = 1; i <= row; i++)
     {
         if (count[i] >= 2)
         {
