@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 struct sudoku
 {
@@ -109,12 +110,20 @@ int Col_check(struct sudoku *p, int c)
 }
 int Box_check(struct sudoku *p, int r, int c)
 {
-    int count[(*p).size + 1], i;
+    int count[(*p).size + 1], i, j, box_size = sqrt((*p).size);
+    r = r - (r % box_size);
+    c = c - (c % box_size);
     for (i = 0; i < (*p).size + 1; i++)
     {
         count[i] = 0;
     }
-    /* Do code change here */
+    for (i = 0; i < box_size; i++)
+    {
+        for (j = 0; j < box_size; j++)
+        {
+            count[get_data(p, r + i, c + j)]++;
+        }
+    }
     for (i = 1; i <= (*p).size; i++)
     {
         if (count[i] >= 2)
