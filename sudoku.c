@@ -50,7 +50,14 @@ void init(struct sudoku *p, int size)
 }
 void set_data(struct sudoku *p, int r, int c, int data)
 {
-    *((*p).base_address + r * (*p).size + c) = data;
+    if (Row_check(p, r) && Col_check(p, c) && Box_check(p, r, c))
+    {
+        *((*p).base_address + r * (*p).size + c) = data;
+    }
+    else
+    {
+        printf("Error :: cannot set %d at index (%d, %d)\n", data, r, c);
+    }
 }
 void Display(struct sudoku *p)
 {
