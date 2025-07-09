@@ -2,11 +2,13 @@
 struct stack
 {
     int arr[10];
-    int stack_top ;
+    int stack_top = -1;
 } ;
 typedef struct stack st;
 void push(st,int);
 void pop(st);
+int isempty(st);
+int isfull(st);
 
 int isempty(st s*){
     if(s.stack_top == -1)
@@ -28,7 +30,7 @@ void push(st s*,int data){
         printf("stack full");
     else
         s.stack_top++;
-        s.arr[s.stack_top] = data;
+        arr[s.stack_top] = data;
 }
 
 void pop(st s*){
@@ -36,11 +38,17 @@ void pop(st s*){
         printf("stack is empty");
     else 
         s.top--;
-        printf("popped data is :",s.arr[s.stack_top]);
+        printf("popped data is :",arr[s.stack_top]);
 }
 
 int main(){
-    st s* = (s*)malloc(sizeof(s*));
+    st s*
+    int s.stack_top;
+    st s* = (s*)malloc(sizeof(s));
+    isfull(s);
+    isempty(s);;
+
     push(s,10);
-    printf("element :",s.arr[stack_top]);
+    printf("element :",arr[stack_top]);
+    pop(s);
 }

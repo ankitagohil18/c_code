@@ -7,10 +7,7 @@ int main()
     int n=sizeof(anks)/sizeof(anks[0]);
     int i;
     for(i=1;i<n;i++)
-        { 
-          if(anks[0]<anks[i])  	
-          	anks[0]=anks[i];
-        }
-        printf("maximum : %d",anks[0]);
-        
+    { 
+      printf("%d\n",anks[i]*2);
+    }    
 }
