@@ -3,16 +3,15 @@
 #include <string.h>
 
 int main() {
-    char str[100];
+    char str[100],temp, rev[100] ;
     scanf("%s", str);
-    int len = strlen(str), isPalindrome = 1;
+    int len = strlen(str);
     for (int i = 0; i < len/2; i++) {
-        if (str[i] != str[len - i - 1]) {
-            isPalindrome = 0;
-            break;
-        }
+        temp = rev[i];
+        rev[i]=rev[i-len-1];
+        rev[i-len-1] = temp;
     }
-    if (isPalindrome)
+    if (strcmp(str,rev)==0)
         printf("YES\n");
     else
         printf("NO\n");
