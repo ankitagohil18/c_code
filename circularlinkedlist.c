@@ -11,6 +11,7 @@ void display(struct node*);
 struct node *insert_front(struct node*, int);
 struct node *insert_last(struct node*, int);
 struct node *insert_after(struct node*,int,int);
+struct node *delete(struct node* , int);
 
 
 int main(){
@@ -20,6 +21,8 @@ int main(){
     p = insert_front(p,30);
     p = insert_last(p,50);
     p = insert_after(p,40,45); 
+    p = delete(p,20);
+    p = delete(p,45);
     display(p);
     return 0;
 }
@@ -115,3 +118,38 @@ struct node *insert_after(struct node* head, int target, int data)
     return head;
 }
 
+struct node *delete(struct node* head,int target)
+{
+    struct node *temp,*temp1;
+    // int target;
+    temp = head;
+    if((*temp).data ==  target)
+    {
+        temp1 = (*temp).next;
+        if(temp1 == temp){
+            temp = NULL;
+            head = temp;
+        }
+        else{
+            while((*temp).next != head){
+                temp = (*temp).next;
+            }
+            (*temp).next = temp1;
+            head = temp1;
+        }
+    }
+    else{
+        while((*temp).next != head){
+            if((*(*temp).next).data == target){
+                temp1 = (*temp).next;
+                (*temp).next = (*temp1).next;
+                (*temp1).next = NULL;
+                free(temp1);
+            }
+            else{
+                temp = (*temp).next;
+            }
+        }
+    }
+    return head;
+}

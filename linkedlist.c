@@ -13,11 +13,11 @@ void insert_after(struct node * ,int ,int );
 struct node *insert_starting(struct node *,int );
 void insert_before(struct node *, int, int );
 struct node *sorted_insert(struct node *,int );
-struct node  *search(struct node *,int );
+void search(struct node *,int );
 void delete_last(struct node *);
+struct node* delete_first(struct node *);
 void delete_after(struct node *,int );
 void delete_before(struct node *,int );
-struct node *delete(struct node *,int);
 
 int main()
 {
@@ -29,9 +29,8 @@ int main()
    insert_last(p,60);
    display(p);
 //    p = delete_first(p);
-//    delete_after(p,30);
-//    delete_before(p,60);
-   p = delete(p,10);
+   delete_after(p,30);
+   delete_before(p,60);
    display(p);
 }
 
@@ -73,10 +72,14 @@ struct node* insert_starting(struct node *x,int data)
 
 void insert_after(struct node *p, int new, int existing)
 {   
-    struct node *new_node_ptr = create(new);
-    struct node *existing_node_ptr = search(p, existing);
-    (*new_node_ptr).ptr = (*existing_node_ptr).ptr;
-    (*existing_node_ptr).ptr = new_node_ptr;
+    struct node *newnode;    
+    while ((*p).data != existing)
+    {
+       p = (*p).ptr;
+    }
+    newnode = create(new);
+    (*newnode).ptr = (*p).ptr;
+    (*p).ptr = newnode;
 }
 
 void insert_before(struct node *p, int new, int existing)
@@ -114,21 +117,16 @@ struct node *sorted_insert(struct node *p,int data)
     return p;    
 }
 
-struct node *search(struct node *p,int target)
+void search(struct node *p,int target)
 {
-    if (p == NULL)
-    {
-        return NULL;
-    }
     while ((*p).ptr !=NULL)
     {
         if((*p).data == target)
         {
-            return p;
+        printf("%d found",(*p).data);
         }
         p = (*p).ptr;
     }
-    return NULL;
 }
 
 void delete_last(struct node *x) 
@@ -137,16 +135,34 @@ void delete_last(struct node *x)
     {
         x = (*x).ptr;
     }
-    free(x);
     (*x).ptr = NULL;
+
+}
+
+struct node *delete_first(struct node *p)
+{
+    if(p == NULL)
+    {
+        printf("list empty");
+    }
+    struct node *temp = p;
+    p = (*p).ptr;
+    free(temp);
+    return p;
+    
+
 }
 
 void delete_after(struct node *p,int given)
 {
-    struct node *deletenode;
-    p = search(p, given);
+    struct node *deletenode ;
+    while((*p).data != given)
+    {
+        p = (*p).ptr;
+    }
     deletenode = (*p).ptr;
     (*p).ptr = (*deletenode).ptr;
+    p = (*p).ptr;
     free(deletenode);
 }
 
@@ -162,31 +178,4 @@ void delete_before(struct node *p,int given)
     p = (*p).ptr;
     free(deletenode);
 
-}
-
-struct node  *delete(struct node *p,int target)
-{   
-    struct node *temp;
-    temp = p;
-    if((*temp).ptr!=NULL && (*temp).data == target)
-    {
-        p = (*temp).ptr;
-        free(temp);
-        return NULL;
-    }
-
-   while (temp !=NULL && (*(*temp).ptr).data != target)
-   {
-        temp = (*temp).ptr;
-   }
-   if((*temp).ptr == NULL) 
-   {
-    return NULL;
-   }
-   struct node *delete_node_ptr ;
-   delete_node_ptr = (*temp).ptr;
-   (*temp).ptr = (*delete_node_ptr).ptr;
-   free(delete_node_ptr);
-   return temp;
-    
 }
