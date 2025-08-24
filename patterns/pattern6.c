@@ -3,6 +3,10 @@
 12
 123
 1234
+1234
+123
+12
+1
 */
 #include<stdio.h>
 int main(){
