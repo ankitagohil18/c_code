@@ -2,7 +2,11 @@
 1
 13
 135
-1357  || a(n) = 
+1357  || a(n) = 2*n-1 for odd number
+1357
+135
+13
+1
 */
 #include<stdio.h>
 int main(){
